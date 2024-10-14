@@ -1,0 +1,10 @@
+# Write your MySQL query statement below
+with cte as(
+    select * ,sum(weight)over (order by turn )as tot_weight
+    from Queue
+)
+select person_name 
+from cte
+where tot_weight<=1000
+order by tot_weight desc
+limit 1;
